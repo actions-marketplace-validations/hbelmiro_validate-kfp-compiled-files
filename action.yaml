@@ -1,5 +1,8 @@
 name: 'Validate KFP Compiled Files'
 description: 'Validates if the changed Kubeflow Pipelines .py files were compiled'
+branding:
+  icon: 'check'
+  color: 'blue'
 inputs:
   pipelines-map-file:
     description: 'The file with the mapping from .py to .yaml'
