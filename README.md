@@ -23,6 +23,7 @@ For each entry in a JSON mapping file (`.py` ➝ `.yaml`), this action:
 |----------------------|-------------------------------------------------------|----------|
 | `pipelines-map-file` | Path to the JSON file mapping `.py` ➝ `.yaml` files   | ✅ Yes    |
 | `requirements-file`  | Path to the `requirements.txt` file for `kfp` install | ✅ Yes    |
+| `extra-compile-args` | Extra arguments to pass to `kfp dsl compile` (optional) | ❌ No     |
 
 ---
 
@@ -52,19 +53,7 @@ jobs:
         with:
           pipelines-map-file: './.github/pipelines-map.json'
           requirements-file: './pipeline/requirements.txt'
+          extra-compile-args: '--some-kfp-flag value'
 ```
 
-> 📝 Replace `<commit-sha>` with the actual SHA or tag of the version you want to use.
-
----
-
-## 🔍 Example Output
-
-```
-→ Checking pipelines/sample.py → pipelines/sample.yaml
-✅ pipelines/sample.yaml is up to date
-→ Checking pipelines/old.py → pipelines/old.yaml
-❌ pipelines/old.yaml is out of date with pipelines/old.py
-   → update by running:
-     kfp dsl compile --py pipelines/old.py --output pipelines/old.yaml
-```
+> 📝 Replace `<commit-sha>`

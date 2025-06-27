@@ -5,6 +5,7 @@ set -euo pipefail
 
 # Accept the map file as first argument, or default if not provided
 MAP_FILE="${1:-.github/kfp-pipelines-map.json}"
+EXTRA_COMPILE_ARGS="${2:-}"
 TMP_DIR="$(mktemp -d)"
 
 if [[ ! -f "$MAP_FILE" ]]; then
@@ -28,7 +29,7 @@ jq -r 'to_entries[] | "\(.key)\t\(.value)"' "$MAP_FILE" \
     fi
 
     # compile to temp and show diff if any
-    kfp dsl compile --py "$py_file" --output "$TMP_DIR/tmp.yaml"
+    kfp dsl compile --py "$py_file" --output "$TMP_DIR/tmp.yaml" $EXTRA_COMPILE_ARGS
     if ! diff -u "$yaml_file" "$TMP_DIR/tmp.yaml"; then
       echo "❌ $yaml_file is out of date with $py_file"
       echo "   → update by running:"
