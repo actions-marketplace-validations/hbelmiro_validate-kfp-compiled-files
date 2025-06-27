@@ -10,6 +10,9 @@ inputs:
   requirements-file:
     description: 'The requirements.txt file'
     required: true
+  extra-compile-args:
+    description: 'Extra arguments to pass to kfp dsl compile (optional)'
+    required: false
 runs:
   using: "composite"
   steps:
@@ -25,4 +28,4 @@ runs:
 
     - name: Verify compiled pipelines
       shell: bash
-      run: $GITHUB_ACTION_PATH/verify_kfp_compiled.sh ${{ inputs.pipelines-map-file }}
+      run: $GITHUB_ACTION_PATH/verify_kfp_compiled.sh ${{ inputs.pipelines-map-file }} ${{ inputs.extra-compile-args || '' }}
