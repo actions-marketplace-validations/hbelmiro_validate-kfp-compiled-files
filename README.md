@@ -55,5 +55,3 @@ jobs:
           requirements-file: './pipeline/requirements.txt'
           extra-compile-args: '--some-kfp-flag value'
 ```
-
-> 📝 Replace `<commit-sha>`
