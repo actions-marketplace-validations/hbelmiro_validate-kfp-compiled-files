@@ -1,0 +1,17 @@
+# Dependabot version updates (runs on its own schedule).
+version: 2
+updates:
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+
+  # Python (uv: pyproject.toml + uv.lock + workspace members)
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+

@@ -1,0 +1,24 @@
+name: uv-lock-check
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  uv-lock-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Check lock file
+        uses: hbelmiro/uv-lock-check@v0.2.0
+
+      - name: Check integration requirements sync
+        uses: hbelmiro/uv-lock-check@v0.2.0
+        with:
+          command: uv export --package integration-env --format requirements-txt --no-emit-project -o tests/integration/requirements.txt
